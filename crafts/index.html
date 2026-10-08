@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>mindctrl's KSP Crafts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="pause-menu-container">
+
+        <h1 class="menu-title">mindctrl.xyz</h1>
+
+        <div class="subtitle-box">
+            <span class="subtitle-text">KSP Craft Browser</span>
+        </div>
+
+        <div class="vabsph-box" id="filter-box">
+            <button class="menu-btn btn-active" data-filter="ALL">All</button>
+            <button class="menu-btn" data-filter="VAB">VAB</button>
+            <button class="menu-btn" data-filter="SPH">SPH</button>
+        </div>
+
+        <div class="scroll-box" id="craft-list"></div>
+
+        <div class="quit-btn-container">
+            <a href="https://www.google.com"><button class="menu-btn">Go back</button></a>
+        </div>
+
+        <div class="version-info">
+            <span class="version-info-text">Discord: @vjwmsn</span>
+        </div>
+
+    </div>
+
+    <div style="padding-bottom: 0;" class="pause-menu-container">
+        <div class="subtitle-box">
+            <span class="subtitle-text" id="detail-title">Select a craft</span>
+        </div>
+        <div class="vabsph-box">
+            <img id="detail-img" style="border-radius: 5px;" src="joel.png" alt="">
+        </div>
+
+        <div style="margin-top: 5px;" class="vabsph-box">
+            <button class="small-btn" id="prev-btn">Prev.</button>
+            <button class="small-btn" id="next-btn">Next</button>
+        </div>
+
+        <span>Description: </span>
+        <div style="margin-top: 10px;" class="vabsph-box">
+            <span id="detail-desc"></span>
+        </div>
+
+        <div class="vabsph-box">
+            <button class="small-btn" id="dl-craft">Download .craft</button>
+            <button class="small-btn" id="dl-flags">Download flags</button>
+        </div>
+    </div>
+
+    <script>
+        const FALLBACK_IMAGE = "joel.png";
+
+        let crafts = {};
+        let filter = "ALL";
+        let currentKey = null;
+        let imageIndex = 0;
+
+        const $ = (id) => document.getElementById(id);
+        const listEl = $("craft-list");
+        const titleEl = $("detail-title");
+        const imgEl = $("detail-img");
+        const descEl = $("detail-desc");
+        const prevBtn = $("prev-btn");
+        const nextBtn = $("next-btn");
+        const dlCraft = $("dl-craft");
+        const dlFlags = $("dl-flags");
+
+        function visibleKeys() {
+            return Object.keys(crafts).filter(
+                (k) => filter === "ALL" || (crafts[k].type || "").toUpperCase() === filter
+            );
+        }
+
+        function renderList() {
+            listEl.replaceChildren();
+            const keys = visibleKeys();
+
+            if (keys.length === 0) {
+                const empty = document.createElement("span");
+                empty.textContent = "No crafts found.";
+                listEl.appendChild(empty);
+            }
+
+            keys.forEach((key) => {
+                const btn = document.createElement("button");
+                btn.className = "craft-btn" + (key === currentKey ? " btn-active" : "");
+                btn.textContent = crafts[key].name || key;
+                btn.addEventListener("click", () => selectCraft(key));
+                listEl.appendChild(btn);
+            });
+        }
+
+        function showImage() {
+            const c = crafts[currentKey];
+            const imgs = (c && c.images) || [];
+            if (imgs.length === 0) {
+                imgEl.src = FALLBACK_IMAGE;
+            } else {
+                imageIndex = (imageIndex + imgs.length) % imgs.length;
+                imgEl.src = imgs[imageIndex];
+            }
+            const multiple = imgs.length > 1;
+            prevBtn.disabled = nextBtn.disabled = !multiple;
+            prevBtn.style.opacity = nextBtn.style.opacity = multiple ? "1" : "0.4";
+        }
+
+        function setLink(btn, url) {
+            btn.dataset.url = url || "";
+            btn.disabled = !url;
+            btn.style.opacity = url ? "1" : "0.4";
+            btn.style.cursor = url ? "pointer" : "default";
+        }
+
+        function selectCraft(key) {
+            currentKey = key;
+            imageIndex = 0;
+            const c = crafts[key];
+
+            titleEl.textContent = `[${c.type || "?"}] ${c.name || key}`;
+            descEl.textContent = c.description || "";
+            setLink(dlCraft, c["dl-link"]);
+            setLink(dlFlags, c["flags-link"]);   // optional field
+            showImage();
+            renderList();                         // refresh highlighted button
+        }
+
+        // Filter buttons
+        document.querySelectorAll("#filter-box [data-filter]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                filter = btn.dataset.filter;
+                document
+                    .querySelectorAll("#filter-box [data-filter]")
+                    .forEach((b) => b.classList.toggle("btn-active", b === btn));
+
+                // If the selected craft is hidden by the new filter, pick the first visible one
+                const keys = visibleKeys();
+                if (!keys.includes(currentKey)) {
+                    if (keys.length) selectCraft(keys[0]);
+                    else {
+                        currentKey = null;
+                        titleEl.textContent = "No craft";
+                        descEl.textContent = "";
+                        imgEl.src = FALLBACK_IMAGE;
+                        setLink(dlCraft, "");
+                        setLink(dlFlags, "");
+                        renderList();
+                    }
+                } else {
+                    renderList();
+                }
+            });
+        });
+
+        // Image navigation
+        prevBtn.addEventListener("click", () => { imageIndex--; showImage(); });
+        nextBtn.addEventListener("click", () => { imageIndex++; showImage(); });
+
+        // Downloads
+        [dlCraft, dlFlags].forEach((btn) =>
+            btn.addEventListener("click", () => {
+                if (btn.dataset.url) window.open(btn.dataset.url, "_blank", "noopener");
+            })
+        );
+
+        // Load data
+        fetch("crafts.json", { cache: "no-cache" })
+            .then((r) => {
+                if (!r.ok) throw new Error(r.status + " " + r.statusText);
+                return r.json();
+            })
+            .then((data) => {
+                crafts = data;
+                renderList();
+                const keys = visibleKeys();
+                if (keys.length) selectCraft(keys[0]);
+            })
+            .catch((err) => {
+                console.error("Could not load crafts.json:", err);
+                listEl.textContent = "Failed to load crafts.json";
+            });
+    </script>
+
+</body>
+</html>

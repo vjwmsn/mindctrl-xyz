@@ -1,0 +1,34 @@
+{
+  "lvr4": {
+    "name": "Kerman Engineering LV-R4",
+    "description": "A heavy-lift, reusable launch vehicle developed by Kerman Engineering. Featured in the Deliverance cinematic.",
+    "dl-link": "https://mindctrl.xyz/crafts/ships/KE_R4/Kerman Engineering LV-R4.craft",
+    "flags-link": "https://mindctrl.xyz/crafts/ships/KE_R4/flags",
+    "type": "VAB",
+    "images": ["https://mindctrl.xyz/crafts/ships/KE_R4/images/img1","https://mindctrl.xyz/crafts/ships/KE_R4/images/img2","https://mindctrl.xyz/crafts/ships/KE_R4/images/img3"]
+  },
+  "lve2": {
+    "name": "Kerman Engineering LV-E2",
+    "description": "A medium-lift, expendable launch vehicle developed by Kerman Engineering. Featured in the Deliverance cinematic.",
+    "dl-link": "https://mindctrl.xyz/crafts/ships/KE_E2/Kerman Engineering LV-E1 Block 2.craft",
+    "flags-link": "https://mindctrl.xyz/crafts/ships/KE_E2/flags",
+    "type": "VAB",
+    "images": ["https://mindctrl.xyz/crafts/ships/KE_E2/images/img1","https://mindctrl.xyz/crafts/ships/KE_E2/images/img2","https://mindctrl.xyz/crafts/ships/KE_E2/images/img3"]
+  },
+  "ssvc": {
+    "name": "Kerman Engineering SSV-C",
+    "description": "If you want your shit in space, for cheap, or want your crap somewhere REALLY fast, this is the way to go.",
+    "dl-link": "https://mindctrl.xyz/crafts/ships/KE_SSV_C/Kerman Engineering SSV-CXX_Wayfarer_.craft",
+    "flags-link": "https://mindctrl.xyz/crafts/ships/KE_SSV_C/flags",
+    "type": "VAB",
+    "images": ["https://mindctrl.xyz/crafts/ships/KE_SSV_C/images/img1"]
+  },
+  "ssvh": {
+    "name": "Kerman Engineering SSV-H",
+    "description": "If you want your PEOPLE in space, for cheap, or want them there REALLY fast, this is the way to go. LEGAL DISCLAIMER: Kerman Engineering holds no accountability for injured Kerbals as a result of extreme G-forces.",
+    "dl-link": "https://mindctrl.xyz/crafts/ships/KE_SSV_H/Kerman Engineering SSV-HXX_Wayfarer_.craft",
+    "flags-link": "https://mindctrl.xyz/crafts/ships/KE_SSV_H/flags",
+    "type": "VAB",
+    "images": ["https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img1","https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img2","https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img3"]
+  }
+}
