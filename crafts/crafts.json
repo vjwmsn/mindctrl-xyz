@@ -30,5 +30,13 @@
     "flags-link": "https://mindctrl.xyz/crafts/ships/KE_SSV_H/flags",
     "type": "SPH",
     "images": ["https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img1.jpg","https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img2.jpg","https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img3.jpg"]
+  },
+  "deliverance": {
+    "name": "Kerman Engineering SLV-H Deliverance",
+    "description": "Is your Valentina Kerman stuck on Duna? Well, worry no more! The Deliverance has plenty of room (and sorta fuel) for a rescue! Starting at only $79,999,999,999.99!",
+    "dl-link": "https://mindctrl.xyz/crafts/ships/KE_Deliverance/ZZZ SLV-H07 Deliverance.craft",
+    "flags-link": "https://mindctrl.xyz/crafts/ships/KE_Deliverance/flags",
+    "type": "SPH",
+    "images": ["https://mindctrl.xyz/crafts/ships/KE_Deliverance/images/img1.jpg","https://mindctrl.xyz/crafts/ships/KE_Deliverance/images/img2.jpg","https://mindctrl.xyz/crafts/ships/KE_Deliverance/images/img3.jpg"]
   }
 }
