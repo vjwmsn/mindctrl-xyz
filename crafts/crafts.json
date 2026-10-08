@@ -20,7 +20,7 @@
     "description": "If you want your shit in space, for cheap, or want your crap somewhere REALLY fast, this is the way to go.",
     "dl-link": "https://mindctrl.xyz/crafts/ships/KE_SSV_C/Kerman Engineering SSV-CXX_Wayfarer_.craft",
     "flags-link": "https://mindctrl.xyz/crafts/ships/KE_SSV_C/flags",
-    "type": "VAB",
+    "type": "SPH",
     "images": ["https://mindctrl.xyz/crafts/ships/KE_SSV_C/images/img1.jpg"]
   },
   "ssvh": {
@@ -28,7 +28,7 @@
     "description": "If you want your PEOPLE in space, for cheap, or want them there REALLY fast, this is the way to go. LEGAL DISCLAIMER: Kerman Engineering holds no accountability for injured Kerbals as a result of extreme G-forces.",
     "dl-link": "https://mindctrl.xyz/crafts/ships/KE_SSV_H/Kerman Engineering SSV-HXX_Wayfarer_.craft",
     "flags-link": "https://mindctrl.xyz/crafts/ships/KE_SSV_H/flags",
-    "type": "VAB",
+    "type": "SPH",
     "images": ["https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img1.jpg","https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img2.jpg","https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img3.jpg"]
   }
 }
