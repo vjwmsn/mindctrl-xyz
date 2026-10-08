@@ -5,7 +5,7 @@
     "dl-link": "https://mindctrl.xyz/crafts/ships/KE_R4/Kerman Engineering LV-R4.craft",
     "flags-link": "https://mindctrl.xyz/crafts/ships/KE_R4/flags",
     "type": "VAB",
-    "images": ["https://mindctrl.xyz/crafts/ships/KE_R4/images/img1","https://mindctrl.xyz/crafts/ships/KE_R4/images/img2","https://mindctrl.xyz/crafts/ships/KE_R4/images/img3"]
+    "images": ["https://mindctrl.xyz/crafts/ships/KE_R4/images/img1.jpg","https://mindctrl.xyz/crafts/ships/KE_R4/images/img2.jpg","https://mindctrl.xyz/crafts/ships/KE_R4/images/img3.jpg"]
   },
   "lve2": {
     "name": "Kerman Engineering LV-E2",
@@ -13,7 +13,7 @@
     "dl-link": "https://mindctrl.xyz/crafts/ships/KE_E2/Kerman Engineering LV-E1 Block 2.craft",
     "flags-link": "https://mindctrl.xyz/crafts/ships/KE_E2/flags",
     "type": "VAB",
-    "images": ["https://mindctrl.xyz/crafts/ships/KE_E2/images/img1","https://mindctrl.xyz/crafts/ships/KE_E2/images/img2","https://mindctrl.xyz/crafts/ships/KE_E2/images/img3"]
+    "images": ["https://mindctrl.xyz/crafts/ships/KE_E2/images/img1.jpg","https://mindctrl.xyz/crafts/ships/KE_E2/images/img2.jpg","https://mindctrl.xyz/crafts/ships/KE_E2/images/img3.jpg"]
   },
   "ssvc": {
     "name": "Kerman Engineering SSV-C",
@@ -21,7 +21,7 @@
     "dl-link": "https://mindctrl.xyz/crafts/ships/KE_SSV_C/Kerman Engineering SSV-CXX_Wayfarer_.craft",
     "flags-link": "https://mindctrl.xyz/crafts/ships/KE_SSV_C/flags",
     "type": "VAB",
-    "images": ["https://mindctrl.xyz/crafts/ships/KE_SSV_C/images/img1"]
+    "images": ["https://mindctrl.xyz/crafts/ships/KE_SSV_C/images/img1.jpg"]
   },
   "ssvh": {
     "name": "Kerman Engineering SSV-H",
@@ -29,6 +29,6 @@
     "dl-link": "https://mindctrl.xyz/crafts/ships/KE_SSV_H/Kerman Engineering SSV-HXX_Wayfarer_.craft",
     "flags-link": "https://mindctrl.xyz/crafts/ships/KE_SSV_H/flags",
     "type": "VAB",
-    "images": ["https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img1","https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img2","https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img3"]
+    "images": ["https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img1.jpg","https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img2.jpg","https://mindctrl.xyz/crafts/ships/KE_SSV_H/images/img3.jpg"]
   }
 }
