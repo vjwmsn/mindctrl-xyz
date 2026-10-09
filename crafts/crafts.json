@@ -38,5 +38,29 @@
     "flags-link": "https://mindctrl.xyz/crafts/ships/KE_Deliverance/flags",
     "type": "SPH",
     "images": ["https://mindctrl.xyz/crafts/ships/KE_Deliverance/images/img1.jpg","https://mindctrl.xyz/crafts/ships/KE_Deliverance/images/img2.jpg","https://mindctrl.xyz/crafts/ships/KE_Deliverance/images/img3.jpg"]
+  },
+  "sav920": {
+    "name": "Kerman Engineering SAV-920",
+    "description": "A small yet capable little airliner, powered by dual overclocked C7 J-20 Juno engines. Designed by Kerman Engineering in KSC, Kerbin.",
+    "dl-link": "https://mindctrl.xyz/crafts/ships/KE_SAV_920/Kerman Engineering SAV-920.craft",
+    "flags-link": "https://mindctrl.xyz/crafts/ships/KE_SAV_920/flags",
+    "type": "SPH",
+    "images": ["https://mindctrl.xyz/crafts/ships/KE_SAV_920/images/img1.jpg","https://mindctrl.xyz/crafts/ships/KE_SAV_920/images/img2.jpg","https://mindctrl.xyz/crafts/ships/KE_SAV_920/images/img3.jpg"]
+  },
+  "rover_er": {
+    "name": "Kerman Engineering MLRV Mobile Laboratory and Refinery",
+    "description": "The MLRV is Jeb's favorite rover, not only because it's the only rover, but because it has rocket engines.",
+    "dl-link": "https://mindctrl.xyz/crafts/ships/KE_ROVER/Kerman Engineering MLRV.craft",
+    "flags-link": "https://mindctrl.xyz/crafts/ships/KE_ROVER/flags",
+    "type": "SPH",
+    "images": ["https://mindctrl.xyz/crafts/ships/KE_ROVER/images/img1.jpg","https://mindctrl.xyz/crafts/ships/KE_ROVER/images/img2.jpg"]
+  },
+  "lc_01": {
+    "name": "Kerman Engineering LC-01",
+    "description": "Sending Kerbals to space has never been cheaper! The Kerman Engineering LC (low cost) 01 is an upper stage, sitting on a single SRB, easily thrusting them into the void.",
+    "dl-link": "https://mindctrl.xyz/crafts/ships/KE_LC/Kerman Engineering LC-01.craft",
+    "flags-link": "https://mindctrl.xyz/crafts/ships/KE_LC/flags",
+    "type": "VAB",
+    "images": ["https://mindctrl.xyz/crafts/ships/KE_LC/images/img1.jpg","https://mindctrl.xyz/crafts/ships/KE_LC/images/img2.jpg","https://mindctrl.xyz/crafts/ships/KE_LC/images/img3.jpg"]
   }
 }
