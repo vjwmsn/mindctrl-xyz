@@ -56,13 +56,13 @@
                         </div>
                         <div class="table-item table-item-middle">
                             <div class="slidecontainer">
-                              <input type="range" min="1" max="25" value="10" class="slider" id="lengthASlider" style="margin: 0px; flex-grow: 1;">
+                              <input type="range" min="1" max="25" value="15" class="slider" id="lengthASlider" style="margin: 0px; flex-grow: 1;">
                               <input type="number" id="lengthA" min="0.0001" max="100" style="margin-left: 5px; color: black;"/>
                             </div>
                         </div>
                         <div class="table-item table-item-middle">
                             <div class="slidecontainer">
-                              <input type="range" min="1" max="25" value="10" class="slider" id="lengthBSlider" style="margin: 0px; flex-grow: 1;">
+                              <input type="range" min="1" max="25" value="15" class="slider" id="lengthBSlider" style="margin: 0px; flex-grow: 1;">
                               <input type="number" id="lengthB"min="0.0001" max="100" style="margin-left: 5px; color: black;"/>
                             </div>
                         </div>
@@ -117,17 +117,17 @@ let lenC = document.getElementById("lenC")
 function UpdateValues() {
   lengthA = lengthAInput.value
   lengthB = lengthBInput.value
-  lengthC = Pythagorean(lengthA, lengthB)
+  lengthC = Pythagorean(lengthA, lengthB).toFixed(4)
 
-  tanAB = Math.tan(lengthA / lengthB)
-  tanBA = Math.tan(lengthB / lengthA)
-  sinAC = Math.sin(lengthA / lengthC)
-  sinBC = Math.sin(lengthB / lengthC)
-  cosAC = Math.cos(lengthA / lengthC)
-  cosBC = Math.cos(lengthB / lengthC)
+  tanAB = (lengthA / lengthB).toFixed(4)
+  tanBA = (lengthB / lengthA).toFixed(4)
+  sinAC = (lengthA / lengthC).toFixed(4)
+  sinBC = (lengthB / lengthC).toFixed(4)
+  cosAC = (lengthA / lengthC).toFixed(4)
+  cosBC = (lengthB / lengthC).toFixed(4)
 
-  angleAC = Math.atan2(lengthB, lengthA) * 180 / Math.PI + "°"
-  angleBC = Math.atan2(lengthA, lengthB) * 180 / Math.PI + "°"
+  angleAC = (Math.atan2(lengthB, lengthA) * 180 / Math.PI).toFixed(4) + "°"
+  angleBC = (Math.atan2(lengthA, lengthB) * 180 / Math.PI).toFixed(4) + "°"
 
   angleACOut.innerHTML = angleAC
   angleBCOut.innerHTML = angleBC
