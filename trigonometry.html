@@ -3,7 +3,7 @@
     </head>
     <body>
         <div class="left-container container">
-            <svg xmlns="http://w3.org" style="flex: 1;">
+            <svg xmlns="http://w3.org" style="flex: 20;">
                 <polygon id="leTriangle" points="75,20 130,130 20,130" fill="#262626" stroke="#161616" stroke-width="3" />
                 <text x="50" y="50" id="pointAC""></text>
                 <text x="50" y="50" id="pointBC"></text>
@@ -16,6 +16,11 @@
                     }
                 </style>
             </svg>
+            <div class="navbar">
+                <span class="navbar-element">mindctrl.xyz</span>
+                <a href="https://mindctrl.xyz" class="navbar-element hover-button">Homepage</a>
+                <button class="navbar-element reset-button" id="resetButton">reset values</button>
+            </div>
         </div>
         <div class="right-container container">
             <div class="right-row top">
@@ -57,13 +62,13 @@
                         <div class="table-item table-item-middle">
                             <div class="slidecontainer">
                               <input type="range" min="1" max="25" value="15" class="slider" id="lengthASlider" style="margin: 0px; flex-grow: 1;">
-                              <input type="number" id="lengthA" min="0.0001" max="100" style="margin-left: 5px; color: black;"/>
+                              <input type="number" id="lengthA" min="0.0001" max="100" style="margin-left: 5px; color: white; color-scheme: dark; width: 4em;"/>
                             </div>
                         </div>
                         <div class="table-item table-item-middle">
                             <div class="slidecontainer">
                               <input type="range" min="1" max="25" value="15" class="slider" id="lengthBSlider" style="margin: 0px; flex-grow: 1;">
-                              <input type="number" id="lengthB"min="0.0001" max="100" style="margin-left: 5px; color: black;"/>
+                              <input type="number" id="lengthB"min="0.0001" max="100" style="unset: all; margin-left: 10px; color: white; color-scheme: dark; width: 4em;"/>
                             </div>
                         </div>
                         <div class="table-item table-item-bottom" id="lengthCElement">N/A</div>
@@ -83,6 +88,8 @@ let sinACOut = document.getElementById("sinAC");
 let sinBCOut = document.getElementById("sinBC");
 let cosACOut = document.getElementById("cosAC");
 let cosBCOut = document.getElementById("cosBC");
+
+let resetButton = document.getElementById("resetButton")
 
 let lengthASlider = document.getElementById("lengthASlider")
 let lengthBSlider = document.getElementById("lengthBSlider")
@@ -140,16 +147,16 @@ function UpdateValues() {
   lengthCElement.innerHTML = lengthC
 
   triangle.setAttribute("points", `50,50,${lengthA*20 + 50},50,50,${lengthB*20 + 50}`)
-  pointAC.innerHTML = "AC"
+  pointAC.innerHTML = `AC (${angleAC})`
   pointAC.setAttribute("x", `${lengthA*20 + 50}`)
-  pointBC.innerHTML = "BC"
+  pointBC.innerHTML = `BC (${angleBC})`
   pointBC.setAttribute("y", `${lengthB*20 + 50}`)
 
-  lenA.innerHTML = "A"
+  lenA.innerHTML = `A (${lengthA})`
   lenA.setAttribute("x", `${lengthA*10 + 50}`)
-  lenB.innerHTML = "B"
+  lenB.innerHTML = `B (${lengthB})`
   lenB.setAttribute("y", `${lengthB*10 + 50}`)
-  lenC.innerHTML = "C"
+  lenC.innerHTML = `C (${lengthC})`
   lenC.setAttribute("x",`${lengthA*10 + 50}`)
   lenC.setAttribute("y",`${lengthB*10 + 50}`)
 }
@@ -175,6 +182,16 @@ lengthBInput.oninput = function() {
   UpdateValues()
 }
 
+resetButton.onclick = function() {
+  lengthAInput.value = 15
+  lengthBInput.value = 15
+  UpdateValues()
+}
+
+lengthAInput.value = 15
+lengthBInput.value = 15
+UpdateValues()
+
 </script>
 
 <style>
@@ -191,11 +208,14 @@ lengthBInput.oninput = function() {
         display: flex;
         flex-direction: column;
         margin: 1%;
-        background: linear-gradient(hsl(0, 0%, 10%), hsl(0, 0%, 13%));
+        background: linear-gradient(hsl(0, 0%, 10%), hsl(0, 0%, 10%));
+        border-style: solid;
+        border-color: hsl(0,0%,15%);
         height: 96vh;
     }
     .left-container {
         flex-grow: 3;
+        display: flex;
     }
     .right-container {
         flex-grow: 1;
@@ -206,12 +226,8 @@ lengthBInput.oninput = function() {
         display: flex;
     }
     .top {
-        border-bottom-color: hsl(0, 0%, 20%);
+        border-bottom-color: hsl(0, 0%, 15%);
         border-bottom-style: solid;
-    }
-    .btm {
-        border-top-color: hsl(0, 0%, 20%);
-        border-top-style: solid;
     }
     .table {
         display: flex;
@@ -224,12 +240,12 @@ lengthBInput.oninput = function() {
     }
     .table-column-left {
         border-right-style: solid;
-        border-color: hsl(0, 0%, 25%);
+        border-color: hsl(0, 0%, 15%);
         border-radius: 0px;
     }
     .table-item {
         border-radius: 1px;
-        border-color: hsl(0, 0%, 25%);
+        border-color: hsl(0, 0%, 15%);
         flex-grow: 1;
         display: flex;
         align-items: center;
@@ -248,5 +264,56 @@ lengthBInput.oninput = function() {
         flex: 1;
         padding-left: 5px;
         padding-right: 5px;
+    }
+
+    .navbar {
+       background: linear-gradient(hsl(0, 0%, 10%), hsl(0, 0%, 13%));
+       flex: 1;
+       display: flex;
+       padding-left: 20px;
+    }
+
+    .navbar-element {
+        margin-right: 20px;
+        transition-duration: 0.5s;
+        color: hsl(0, 0%, 50%);
+
+    }
+
+    .hover-button:hover {
+        color: white;
+    }
+    .reset-button {
+        all: unset;
+        align-self: start;
+        color: hsl(0, 0%, 50%);
+        transition: 0.5s;
+        text-decoration: underline;
+    }
+    .reset-button:hover {
+        color: white;
+        cursor: pointer;
+    }
+    .slider {
+        appearance: none;
+        background-color: hsl(0,0%,15%);
+        border-radius: 10px;
+        border-color: hsl(0, 0%, 8%);
+        border-style: solid;
+    }
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: hsl(0, 0%, 30%);
+        border-color: hsl(0, 0%, 10%);
+        cursor: pointer;
+    }
+    ::-moz-range-thumb {
+        background-color: hsl(0, 0%, 30%);
+        border-color: hsl(0, 0%, 10%);
+        cursor: pointer;
+    }
+    body {
+        margin: 0px
     }
 </style>
