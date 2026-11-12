@@ -306,16 +306,21 @@ UpdateValues()
         border-style: solid;
     }
     .slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        background-color: hsl(0, 0%, 30%);
-        border-color: hsl(0, 0%, 10%);
-        cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: hsl(0, 0%, 30%);
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
     }
-    ::-moz-range-thumb {
+    .slider::-moz-range-thumb {
         background-color: hsl(0, 0%, 30%);
-        border-color: hsl(0, 0%, 10%);
         cursor: pointer;
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+        border-style: none;
     }
     body {
         margin: 0px
