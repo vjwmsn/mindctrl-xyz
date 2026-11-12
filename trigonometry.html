@@ -49,10 +49,10 @@
                     </div>
                     <div class="table-column table-column-right" style="flex: 5;">
                         <div class="table-item table-item-middle">
-                            <div class="table-item table-item-bottom">N/A</div>
+                            <div class="table-item table-item-bottom" id="angleAC">N/A</div>
                         </div>
                         <div class="table-item table-item-middle">
-                            <div class="table-item table-item-bottom">N/A</div>
+                            <div class="table-item table-item-bottom" id="angleBC">N/A</div>
                         </div>
                         <div class="table-item table-item-middle">
                             <div class="slidecontainer">
@@ -75,6 +75,8 @@
 </html>
 
 <script>
+let angleACOut = document.getElementById("angleAC")
+let angleBCOut = document.getElementById("angleBC")
 let tanABOut = document.getElementById("tanAB");
 let tanBAOut = document.getElementById("tanBA");
 let sinACOut = document.getElementById("sinAC");
@@ -98,12 +100,12 @@ let lengthA = 10
 let lengthB = 10
 let lengthC = Pythagorean(lengthA, lengthB)
 
-let tanAB = Math.tan(lengthA / lengthB)
-let tanBA = Math.tan(lengthB / lengthA)
-let sinAC = Math.sin(lengthA / lengthC)
-let sinBC = Math.sin(lengthB / lengthC)
-let cosAC = Math.cos(lengthA / lengthC)
-let cosBC = Math.cos(lengthB / lengthC)
+let tanAB = lengthA / lengthB
+let tanBA = lengthB / lengthA
+let sinAC = lengthA / lengthC
+let sinBC = lengthB / lengthC
+let cosAC = lengthA / lengthC
+let cosBC = lengthB / lengthC
 
 let triangle = document.getElementById("leTriangle")
 let pointAC = document.getElementById("pointAC")
@@ -124,6 +126,11 @@ function UpdateValues() {
   cosAC = Math.cos(lengthA / lengthC)
   cosBC = Math.cos(lengthB / lengthC)
 
+  angleAC = Math.atan2(lengthB, lengthA) * 180 / Math.PI + "°"
+  angleBC = Math.atan2(lengthA, lengthB) * 180 / Math.PI + "°"
+
+  angleACOut.innerHTML = angleAC
+  angleBCOut.innerHTML = angleBC
   tanABOut.innerHTML = tanAB
   tanBAOut.innerHTML = tanBA
   sinACOut.innerHTML = sinAC
