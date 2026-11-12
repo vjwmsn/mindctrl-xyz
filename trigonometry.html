@@ -1,0 +1,239 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <div class="left-container container">
+            <svg xmlns="http://w3.org" style="flex: 1;">
+                <polygon id="leTriangle" points="75,20 130,130 20,130" fill="#262626" stroke="#161616" stroke-width="3" />
+                <text x="50" y="50" id="pointAC""></text>
+                <text x="50" y="50" id="pointBC"></text>
+                <text x="50" y="50" id="lenA"></text>
+                <text x="50" y="50" id="lenB"></text>
+                <text x="50" y="50" id="lenC"></text>
+                <style>
+                    text {
+                        fill: white;
+                    }
+                </style>
+            </svg>
+        </div>
+        <div class="right-container container">
+            <div class="right-row top">
+                <div class="table">
+                    <div class="table-column table-column-left" style="flex: 2;">
+                        <div class="table-item table-item-top">tan(A/B)</div>
+                        <div class="table-item table-item-middle">tan(B/A)</div>
+                        <div class="table-item table-item-middle">sin(A/C)</div>
+                        <div class="table-item table-item-middle">sin(B/C)</div>
+                        <div class="table-item table-item-middle">cos(A/C)</div>
+                        <div class="table-item table-item-bottom">cos(B/C)</div>
+                    </div>
+                    <div class="table-column table-column-right" style="flex: 5;">
+                        <div class="table-item table-item-top" id="tanAB">N/A</div>
+                        <div class="table-item table-item-middle" id="tanBA">N/A</div>
+                        <div class="table-item table-item-middle" id="sinAC">N/A</div>
+                        <div class="table-item table-item-middle" id="sinBC">N/A</div>
+                        <div class="table-item table-item-middle" id="cosAC">N/A</div>
+                        <div class="table-item table-item-bottom" id="cosBC">N/A</div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-row btm">
+                <div class="table">
+                    <div class="table-column table-column-left" style="flex: 2;">
+                        <div class="table-item table-item-top">angle A,C</div>
+                        <div class="table-item table-item-middle">angle B,C</div>
+                        <div class="table-item table-item-middle">length A</div>
+                        <div class="table-item table-item-middle">length B</div>
+                        <div class="table-item table-item-bottom">length C</div>
+                    </div>
+                    <div class="table-column table-column-right" style="flex: 5;">
+                        <div class="table-item table-item-middle">
+                            <div class="table-item table-item-bottom">N/A</div>
+                        </div>
+                        <div class="table-item table-item-middle">
+                            <div class="table-item table-item-bottom">N/A</div>
+                        </div>
+                        <div class="table-item table-item-middle">
+                            <div class="slidecontainer">
+                              <input type="range" min="1" max="25" value="10" class="slider" id="lengthASlider" style="margin: 0px; flex-grow: 1;">
+                              <input type="number" id="lengthA" min="0.0001" max="100" style="margin-left: 5px; color: black;"/>
+                            </div>
+                        </div>
+                        <div class="table-item table-item-middle">
+                            <div class="slidecontainer">
+                              <input type="range" min="1" max="25" value="10" class="slider" id="lengthBSlider" style="margin: 0px; flex-grow: 1;">
+                              <input type="number" id="lengthB"min="0.0001" max="100" style="margin-left: 5px; color: black;"/>
+                            </div>
+                        </div>
+                        <div class="table-item table-item-bottom">N/A</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script>
+let tanABOut = document.getElementById("tanAB");
+let tanBAOut = document.getElementById("tanBA");
+let sinACOut = document.getElementById("sinAC");
+let sinBCOut = document.getElementById("sinBC");
+let cosACOut = document.getElementById("cosAC");
+let cosBCOut = document.getElementById("cosBC");
+
+let lengthASlider = document.getElementById("lengthASlider")
+let lengthBSlider = document.getElementById("lengthBSlider")
+
+let lengthAInput = document.getElementById("lengthA")
+let lengthBInput = document.getElementById("lengthB")
+
+function Pythagorean(a, b) {return Math.sqrt(a*a + b*b)}
+
+let angleAC = 45
+let angleBC = 45
+let lengthA = 10
+let lengthB = 10
+let lengthC = Pythagorean(lengthA, lengthB)
+
+let tanAB = Math.tan(lengthA / lengthB)
+let tanBA = Math.tan(lengthB / lengthA)
+let sinAC = Math.sin(lengthA / lengthC)
+let sinBC = Math.sin(lengthB / lengthC)
+let cosAC = Math.cos(lengthA / lengthC)
+let cosBC = Math.cos(lengthB / lengthC)
+
+let triangle = document.getElementById("leTriangle")
+let pointAC = document.getElementById("pointAC")
+let pointBC = document.getElementById("pointBC")
+let lenA = document.getElementById("lenA")
+let lenB = document.getElementById("lenB")
+let lenC = document.getElementById("lenC")
+
+function UpdateValues() {
+  lengthA = lengthAInput.value
+  lengthB = lengthBInput.value
+  lengthC = Pythagorean(lengthA, lengthB)
+
+  tanAB = Math.tan(lengthA / lengthB)
+  tanBA = Math.tan(lengthB / lengthA)
+  sinAC = Math.sin(lengthA / lengthC)
+  sinBC = Math.sin(lengthB / lengthC)
+  cosAC = Math.cos(lengthA / lengthC)
+  cosBC = Math.cos(lengthB / lengthC)
+
+  tanABOut.innerHTML = tanAB
+  tanBAOut.innerHTML = tanBA
+  sinACOut.innerHTML = sinAC
+  sinBCOut.innerHTML = sinBC
+  cosACOut.innerHTML = cosAC
+  cosBCOut.innerHTML = cosBC
+
+  triangle.setAttribute("points", `50,50,${lengthA*20 + 50},50,50,${lengthB*20 + 50}`)
+  pointAC.innerHTML = "AC"
+  pointAC.setAttribute("x", `${lengthA*20 + 50}`)
+  pointBC.innerHTML = "BC"
+  pointBC.setAttribute("y", `${lengthB*20 + 50}`)
+
+  lenA.innerHTML = "A"
+  lenA.setAttribute("x", `${lengthA*10 + 50}`)
+  lenB.innerHTML = "B"
+  lenB.setAttribute("y", `${lengthB*10 + 50}`)
+}
+
+lengthAInput.value = lengthASlider.value
+lengthBInput.value = lengthBSlider.value
+
+lengthASlider.oninput = function() {
+  lengthAInput.value = this.value
+  UpdateValues()
+}
+lengthAInput.oninput = function() {
+  lengthASlider.value = this.value
+  UpdateValues()
+}
+
+lengthBSlider.oninput = function() {
+  lengthBInput.value = this.value
+  UpdateValues()
+}
+lengthBInput.oninput = function() {
+  lengthBSlider.value = this.value
+  UpdateValues()
+}
+
+</script>
+
+<style>
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+    }
+    body {
+        display: flex;
+        background-color: hsl(0, 0%, 20%);
+    }
+    .container {
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        margin: 1%;
+        background: linear-gradient(hsl(0, 0%, 10%), hsl(0, 0%, 13%));
+        height: 96vh;
+    }
+    .left-container {
+        flex-grow: 3;
+    }
+    .right-container {
+        flex-grow: 1;
+    }
+    .right-row {
+        height: 50vh;
+        border-radius: 1px;
+        display: flex;
+    }
+    .top {
+        border-bottom-color: hsl(0, 0%, 20%);
+        border-bottom-style: solid;
+    }
+    .btm {
+        border-top-color: hsl(0, 0%, 20%);
+        border-top-style: solid;
+    }
+    .table {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+    }
+    .table-column {
+        display: flex;
+        flex-direction: column;
+    }
+    .table-column-left {
+        border-right-style: solid;
+        border-color: hsl(0, 0%, 25%);
+        border-radius: 0px;
+    }
+    .table-item {
+        border-radius: 1px;
+        border-color: hsl(0, 0%, 25%);
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .table-item-top {
+        border-bottom-style: solid;
+    }
+    .table-item-middle {
+        border-bottom-style: solid;
+    }
+    .table-item-bottom {
+    }
+    .slidecontainer {
+        display: flex;
+        flex: 1;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+</style>
