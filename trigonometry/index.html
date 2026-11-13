@@ -46,18 +46,24 @@
             <div class="right-row btm">
                 <div class="table">
                     <div class="table-column table-column-left" style="flex: 2;">
-                        <div class="table-item table-item-top">angle A,C</div>
-                        <div class="table-item table-item-middle">angle B,C</div>
+                        <div class="table-item table-item-top">angle AC</div>
+                        <div class="table-item table-item-middle">angle BC</div>
                         <div class="table-item table-item-middle">length A</div>
                         <div class="table-item table-item-middle">length B</div>
                         <div class="table-item table-item-bottom">length C</div>
                     </div>
                     <div class="table-column table-column-right" style="flex: 5;">
                         <div class="table-item table-item-middle">
-                            <div class="table-item table-item-bottom" id="angleAC">N/A</div>
+                            <div class="slidecontainer">
+                              <input type="range" min="0" max="90" value="15" class="slider" id="angleACSlider" style="margin: 0px; margin-left: 10px; flex-grow: 1;">
+                              <input type="number" id="angleAC" min="0" max="90" style="margin-left: 10px; margin-right: 10px; color: white; color-scheme: dark; width: 4em;"/>
+                            </div>
                         </div>
                         <div class="table-item table-item-middle">
-                            <div class="table-item table-item-bottom" id="angleBC">N/A</div>
+                            <div class="slidecontainer">
+                              <input type="range" min="0" max="90" value="15" class="slider" id="angleBCSlider" style="margin: 0px; margin-left: 10px; flex-grow: 1;">
+                              <input type="number" id="angleBC" min="0" max="90 " style="margin-left: 10px; margin-right: 10px; color: white; color-scheme: dark; width: 4em;"/>
+                            </div>
                         </div>
                         <div class="table-item table-item-middle">
                             <div class="slidecontainer">
@@ -80,121 +86,189 @@
 </html>
 
 <script>
-let angleACOut = document.getElementById("angleAC")
-let angleBCOut = document.getElementById("angleBC")
-let tanABOut = document.getElementById("tanAB");
-let tanBAOut = document.getElementById("tanBA");
-let sinACOut = document.getElementById("sinAC");
-let sinBCOut = document.getElementById("sinBC");
-let cosACOut = document.getElementById("cosAC");
-let cosBCOut = document.getElementById("cosBC");
 
-let resetButton = document.getElementById("resetButton")
+const $ = id => document.getElementById(id);
 
-let lengthASlider = document.getElementById("lengthASlider")
-let lengthBSlider = document.getElementById("lengthBSlider")
+const tanABOut = $("tanAB");
+const tanBAOut = $("tanBA");
+const sinACOut = $("sinAC");
+const sinBCOut = $("sinBC");
+const cosACOut = $("cosAC");
+const cosBCOut = $("cosBC");
+const lengthCElement = $("lengthCElement");
 
-let lengthAInput = document.getElementById("lengthA")
-let lengthBInput = document.getElementById("lengthB")
+const resetButton = $("resetButton");
 
-let lengthCElement = document.getElementById("lengthCElement")
+const lengthASlider = $("lengthASlider");
+const lengthBSlider = $("lengthBSlider");
+const lengthAInput = $("lengthA");
+const lengthBInput = $("lengthB");
 
-function Pythagorean(a, b) {return Math.sqrt(a*a + b*b)}
+const angleACSlider = $("angleACSlider");
+const angleBCSlider = $("angleBCSlider");
+const angleACInput = $("angleAC");
+const angleBCInput = $("angleBC");
 
-let angleAC = 45
-let angleBC = 45
-let lengthA = 10
-let lengthB = 10
-let lengthC = Pythagorean(lengthA, lengthB)
+const triangle = $("leTriangle");
+const pointAC = $("pointAC");
+const pointBC = $("pointBC");
+const lenA = $("lenA");
+const lenB = $("lenB");
+const lenC = $("lenC");
 
-let tanAB = lengthA / lengthB
-let tanBA = lengthB / lengthA
-let sinAC = lengthB / lengthC
-let sinBC = lengthA / lengthC
-let cosAC = lengthA / lengthC
-let cosBC = lengthB / lengthC
+let angleAC = 45;
+let angleBC = 45;
 
-let triangle = document.getElementById("leTriangle")
-let pointAC = document.getElementById("pointAC")
-let pointBC = document.getElementById("pointBC")
-let lenA = document.getElementById("lenA")
-let lenB = document.getElementById("lenB")
-let lenC = document.getElementById("lenC")
+let lengthA = 15;
+let lengthB = 15;
+let lengthC = Math.sqrt(lengthA ** 2 + lengthB ** 2);
+
+function Pythagorean(a, b) {
+    return Math.sqrt(a * a + b * b);
+}
 
 function UpdateValues() {
-  lengthA = lengthAInput.value
-  lengthB = lengthBInput.value
-  lengthC = Pythagorean(lengthA, lengthB).toFixed(4)
 
-  tanAB = (lengthA / lengthB).toFixed(4)
-  tanBA = (lengthB / lengthA).toFixed(4)
-  sinAC = (lengthB / lengthC).toFixed(4)
-  sinBC = (lengthA / lengthC).toFixed(4)
-  cosAC = (lengthA / lengthC).toFixed(4)
-  cosBC = (lengthB / lengthC).toFixed(4)
+    const tanAB = lengthA / lengthB;
+    const tanBA = lengthB / lengthA;
 
-  angleAC = (Math.atan2(lengthB, lengthA) * 180 / Math.PI).toFixed(4) + "°"
-  angleBC = (Math.atan2(lengthA, lengthB) * 180 / Math.PI).toFixed(4) + "°"
+    const sinAC = lengthB / lengthC;
+    const sinBC = lengthA / lengthC;
 
-  angleACOut.innerHTML = angleAC
-  angleBCOut.innerHTML = angleBC
-  tanABOut.innerHTML = tanAB
-  tanBAOut.innerHTML = tanBA
-  sinACOut.innerHTML = sinAC
-  sinBCOut.innerHTML = sinBC
-  cosACOut.innerHTML = cosAC
-  cosBCOut.innerHTML = cosBC
-  lengthCElement.innerHTML = lengthC
+    const cosAC = lengthA / lengthC;
+    const cosBC = lengthB / lengthC;
 
-  triangle.setAttribute("points", `50,50,${lengthA*20 + 50},50,50,${lengthB*20 + 50}`)
-  pointAC.innerHTML = `AC (${angleAC})`
-  pointAC.setAttribute("x", `${lengthA*20 + 50}`)
-  pointBC.innerHTML = `BC (${angleBC})`
-  pointBC.setAttribute("y", `${lengthB*20 + 50}`)
+    tanABOut.textContent = tanAB.toFixed(4);
+    tanBAOut.textContent = tanBA.toFixed(4);
 
-  lenA.innerHTML = `A (${lengthA})`
-  lenA.setAttribute("x", `${lengthA*10 + 50}`)
-  lenB.innerHTML = `B (${lengthB})`
-  lenB.setAttribute("y", `${lengthB*10 + 50}`)
-  lenC.innerHTML = `C (${lengthC})`
-  lenC.setAttribute("x",`${lengthA*10 + 50}`)
-  lenC.setAttribute("y",`${lengthB*10 + 50}`)
+    sinACOut.textContent = sinAC.toFixed(4);
+    sinBCOut.textContent = sinBC.toFixed(4);
+
+    cosACOut.textContent = cosAC.toFixed(4);
+    cosBCOut.textContent = cosBC.toFixed(4);
+
+    lengthCElement.textContent = lengthC.toFixed(4);
+
+    triangle.setAttribute(
+        "points",
+        `50,50 ${lengthA * 20 + 50},50 50,${lengthB * 20 + 50}`
+    );
+
+    pointAC.textContent = `AC (${angleAC.toFixed(2)}°)`;
+    pointAC.setAttribute("x", lengthA * 20 + 50);
+
+    pointBC.textContent = `BC (${angleBC.toFixed(2)}°)`;
+    pointBC.setAttribute("y", lengthB * 20 + 50);
+
+    lenA.textContent = `A (${lengthA.toFixed(2)})`;
+    lenA.setAttribute("x", lengthA * 10 + 50);
+
+    lenB.textContent = `B (${lengthB.toFixed(2)})`;
+    lenB.setAttribute("y", lengthB * 10 + 50);
+
+    lenC.textContent = `C (${lengthC.toFixed(4)})`;
+    lenC.setAttribute("x", lengthA * 10 + 50);
+    lenC.setAttribute("y", lengthB * 10 + 50);
 }
 
-lengthAInput.value = lengthASlider.value
-lengthBInput.value = lengthBSlider.value
+function UpdateFromLengths() {
+
+    const a = Number(lengthAInput.value);
+    const b = Number(lengthBInput.value);
+
+    if (!Number.isFinite(a) || !Number.isFinite(b) ||
+        a <= 0 || b <= 0) return;
+
+    lengthA = a;
+    lengthB = b;
+
+    lengthC = Pythagorean(lengthA, lengthB);
+
+    angleAC = Math.atan2(lengthB, lengthA) * 180 / Math.PI;
+    angleBC = 90 - angleAC;
+
+    lengthASlider.value = lengthA;
+    lengthBSlider.value = lengthB;
+
+    angleACInput.value = angleAC.toFixed(2);
+    angleBCInput.value = angleBC.toFixed(2);
+
+    angleACSlider.value = angleAC;
+    angleBCSlider.value = angleBC;
+
+    UpdateValues();
+}
+
+function UpdateFromAngleAC(degrees) {
+
+    angleAC = Math.max(0.1, Math.min(89.9, Number(degrees)));
+    angleBC = 90 - angleAC;
+
+    const radians = angleAC * Math.PI / 180;
+
+    lengthA = lengthC * Math.cos(radians);
+    lengthB = lengthC * Math.sin(radians);
+
+    angleACInput.value = angleAC.toFixed(2);
+    angleBCInput.value = angleBC.toFixed(2);
+
+    angleACSlider.value = angleAC;
+    angleBCSlider.value = angleBC;
+
+    lengthAInput.value = lengthA.toFixed(4);
+    lengthBInput.value = lengthB.toFixed(4);
+
+    lengthASlider.value = lengthA;
+    lengthBSlider.value = lengthB;
+
+    UpdateValues();
+}
 
 lengthASlider.oninput = function() {
-  lengthAInput.value = this.value
-  UpdateValues()
-}
+    lengthAInput.value = this.value;
+    UpdateFromLengths();
+};
+
 lengthAInput.oninput = function() {
-  lengthASlider.value = this.value
-  UpdateValues()
-}
+    UpdateFromLengths();
+};
 
 lengthBSlider.oninput = function() {
-  lengthBInput.value = this.value
-  UpdateValues()
-}
+    lengthBInput.value = this.value;
+    UpdateFromLengths();
+};
+
 lengthBInput.oninput = function() {
-  lengthBSlider.value = this.value
-  UpdateValues()
-}
+    UpdateFromLengths();
+};
+
+angleACSlider.oninput = function() {
+    UpdateFromAngleAC(this.value);
+};
+
+angleACInput.oninput = function() {
+    UpdateFromAngleAC(this.value);
+};
+
+angleBCSlider.oninput = function() {
+    UpdateFromAngleAC(90 - Number(this.value));
+};
+
+angleBCInput.oninput = function() {
+    UpdateFromAngleAC(90 - Number(this.value));
+};
 
 resetButton.onclick = function() {
-  lengthAInput.value = 15
-  lengthBInput.value = 15
-  lengthASlider.value = 15
-  lengthBSlider.value = 15
-  UpdateValues()
-}
+    lengthAInput.value = 15;
+    lengthBInput.value = 15;
 
-lengthAInput.value = 15
-lengthBInput.value = 15
-lengthASlider.value = 15
-lengthBSlider.value = 15
-UpdateValues()
+    UpdateFromLengths();
+};
+
+lengthAInput.value = 15;
+lengthBInput.value = 15;
+
+UpdateFromLengths();
 
 </script>
 
